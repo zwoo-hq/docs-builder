@@ -38,14 +38,31 @@ const buildDockerfile = () => {
   let copies = "";
 
   for (const [lang, dir] of Object.entries(repos)) {
-    console.log(lang, dir);
+    console.log(chalk.green(`repo: ${dir} (${lang})`));
     content += Stage.replace(/#LANG#/g, lang).replace(/#DIR#/g, dir);
     copies += ProductionCopy.replace(/#LANG#/g, lang)
       .replace(/#LANG_DIR#/g, lang === "en" ? "" : "/" + lang)
       .replace(/#DIR#/g, dir);
   }
 
+  const destination = path.resolve("./Dockerfile");
+  console.log(chalk.magenta(`\twriting Dockerfile to ${destination}`));
   fs.writeFileSync("./Dockerfile", content + Production + copies);
 };
 
+const start = performance.now();
+console.log(chalk.cyan("docs-builder: generate dockerfile"));
+console.log(chalk.blue("docs-builder: generating dockerfile from given repos"));
+
 buildDockerfile();
+
+const end = performance.now();
+console.log(
+  chalk.cyan(
+    `docs-builder: generate dockerfile finished in ${(
+      (end - start) /
+      1000
+    ).toFixed(3)}s`
+  )
+);
+console.log();
