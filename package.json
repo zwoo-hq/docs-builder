@@ -1,0 +1,13 @@
+{
+  "name": "@zwoo/docs-builder",
+  "version": "0.0.0",
+  "private": true,
+  "author": "Fabian Kachlock",
+  "license": "MIT",
+  "scripts": {
+    "prepare:build": "node ./prepare.mjs && node ./generateDockerfile.mjs"
+  },
+  "devDependencies": {
+    "zx": "^8.0.2"
+  }
+}
