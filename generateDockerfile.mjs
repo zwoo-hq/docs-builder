@@ -15,6 +15,7 @@ RUN yarn
 COPY ./#DIR#/api ./api
 COPY ./#DIR#/docs ./docs
 COPY ./#DIR#/dev ./dev
+COPY ./#DIR#/scripts ./scripts
 COPY ./#DIR#/commonConfig.mts ./
 
 # build

@@ -12,6 +12,7 @@ RUN yarn
 COPY ./docs/api ./api
 COPY ./docs/docs ./docs
 COPY ./docs/dev ./dev
+COPY ./docs/scripts ./scripts
 COPY ./docs/commonConfig.mts ./
 
 # build
@@ -30,6 +31,7 @@ RUN yarn
 COPY ./docs-de/api ./api
 COPY ./docs-de/docs ./docs
 COPY ./docs-de/dev ./dev
+COPY ./docs-de/scripts ./scripts
 COPY ./docs-de/commonConfig.mts ./
 
 # build
