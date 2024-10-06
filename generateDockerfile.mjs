@@ -7,9 +7,9 @@ FROM node:18-alpine as build-#LANG#
 # setup
 WORKDIR /src/docs-builder/#DIR#
 COPY ./#DIR#/package.json ./
-COPY ./#DIR#/yarn.lock ./
+COPY ./#DIR#/pnpm-lock.lock ./
 
-RUN yarn
+RUN pnpm install --frozen-lockfile
 
 # copy source
 COPY ./#DIR#/api ./api
@@ -19,7 +19,7 @@ COPY ./#DIR#/scripts ./scripts
 COPY ./#DIR#/commonConfig.mts ./
 
 # build
-RUN yarn build
+RUN pnpm build
 `;
 
 const ProductionCopy = `

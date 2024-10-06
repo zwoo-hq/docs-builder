@@ -4,9 +4,9 @@ FROM node:18-alpine as build-en
 # setup
 WORKDIR /src/docs-builder/docs
 COPY ./docs/package.json ./
-COPY ./docs/yarn.lock ./
+COPY ./docs/pnpm-lock.lock ./
 
-RUN yarn
+RUN pnpm install --frozen-lockfile
 
 # copy source
 COPY ./docs/api ./api
@@ -16,16 +16,16 @@ COPY ./docs/scripts ./scripts
 COPY ./docs/commonConfig.mts ./
 
 # build
-RUN yarn build
+RUN pnpm build
 
 FROM node:18-alpine as build-de
 
 # setup
 WORKDIR /src/docs-builder/docs-de
 COPY ./docs-de/package.json ./
-COPY ./docs-de/yarn.lock ./
+COPY ./docs-de/pnpm-lock.lock ./
 
-RUN yarn
+RUN pnpm install --frozen-lockfile
 
 # copy source
 COPY ./docs-de/api ./api
@@ -35,7 +35,7 @@ COPY ./docs-de/scripts ./scripts
 COPY ./docs-de/commonConfig.mts ./
 
 # build
-RUN yarn build
+RUN pnpm build
 
 ### Production Stage
 FROM nginx:stable-alpine as prod
