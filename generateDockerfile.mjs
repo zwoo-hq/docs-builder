@@ -40,7 +40,7 @@ COPY ./nginx.conf /etc/nginx/
 `;
 
 const buildDockerfile = () => {
-  let content = "";
+  let content = Pre;
   let copies = "";
 
   for (const [lang, dir] of Object.entries(repos)) {

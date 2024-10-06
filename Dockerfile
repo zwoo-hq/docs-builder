@@ -1,4 +1,7 @@
 
+FROM node:20-alpine AS prepare-env
+RUN corepack enable
+
 FROM prepare-env AS build-en
 
 # setup
