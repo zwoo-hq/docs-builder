@@ -7,7 +7,7 @@ FROM node:18-alpine as build-#LANG#
 # setup
 WORKDIR /src/docs-builder/#DIR#
 COPY ./#DIR#/package.json ./
-COPY ./#DIR#/pnpm-lock.lock ./
+COPY ./#DIR#/pnpm-lock.yaml ./
 
 RUN pnpm install --frozen-lockfile
 
