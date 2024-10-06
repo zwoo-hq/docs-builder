@@ -1,10 +1,10 @@
 
-FROM node:18-alpine as build-en
+FROM prepare-env AS build-en
 
 # setup
 WORKDIR /src/docs-builder/docs
 COPY ./docs/package.json ./
-COPY ./docs/pnpm-lock.lock ./
+COPY ./docs/pnpm-lock.yaml ./
 
 RUN pnpm install --frozen-lockfile
 
@@ -18,12 +18,12 @@ COPY ./docs/commonConfig.mts ./
 # build
 RUN pnpm build
 
-FROM node:18-alpine as build-de
+FROM prepare-env AS build-de
 
 # setup
 WORKDIR /src/docs-builder/docs-de
 COPY ./docs-de/package.json ./
-COPY ./docs-de/pnpm-lock.lock ./
+COPY ./docs-de/pnpm-lock.yaml ./
 
 RUN pnpm install --frozen-lockfile
 
@@ -38,7 +38,7 @@ COPY ./docs-de/commonConfig.mts ./
 RUN pnpm build
 
 ### Production Stage
-FROM nginx:stable-alpine as prod
+FROM nginx:stable-alpine AS prod
 COPY ./nginx.conf /etc/nginx/
 
 COPY --from=build-en /src/docs-builder/docs/docs/.vitepress/dist /app/docs

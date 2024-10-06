@@ -1,8 +1,13 @@
 import "zx/globals";
 import { repos } from "./config.mjs";
 
+const Pre = `
+FROM node:20-alpine AS prepare-env
+RUN corepack enable
+`;
+
 const Stage = `
-FROM node:18-alpine as build-#LANG#
+FROM prepare-env AS build-#LANG#
 
 # setup
 WORKDIR /src/docs-builder/#DIR#
@@ -30,7 +35,7 @@ COPY --from=build-#LANG# /src/docs-builder/#DIR#/dev/.vitepress/dist /app/docs#L
 
 const Production = `
 ### Production Stage
-FROM nginx:stable-alpine as prod
+FROM nginx:stable-alpine AS prod
 COPY ./nginx.conf /etc/nginx/
 `;
 
