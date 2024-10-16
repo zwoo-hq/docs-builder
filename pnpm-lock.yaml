@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       zx:
-        specifier: ^8.0.2
-        version: 8.0.2
+        specifier: ^8.1.9
+        version: 8.1.9
 
   docs:
     dependencies:
@@ -1183,9 +1183,9 @@ packages:
     engines: {node: '>= 16.0.0'}
     hasBin: true
 
-  zx@8.0.2:
-    resolution: {integrity: sha512-3g+ePtPYmyrjRuASlJiUhkje1je4a47woML/fzTKBb9PA5BzRQbSswwyJ8nlFWJjA1ORRi6TMyAdhuz/jK+Gaw==}
-    engines: {node: '>= 16.0.0'}
+  zx@8.1.9:
+    resolution: {integrity: sha512-UHuLHphHmsBYKkAchkSrEN4nzDyagafqC9HUxtc1J7eopaScW6H9dsLJ1lmkAntnLtDTGoM8fa+jrJrXiIfKFA==}
+    engines: {node: '>= 12.17.0'}
     hasBin: true
 
 snapshots:
@@ -2321,7 +2321,7 @@ snapshots:
       which: 3.0.1
       yaml: 2.4.1
 
-  zx@8.0.2:
+  zx@8.1.9:
     optionalDependencies:
       '@types/fs-extra': 11.0.4
       '@types/node': 20.12.7
