@@ -3,6 +3,7 @@ import { repos } from "./config.mjs";
 
 const Pre = `
 FROM node:20-alpine AS prepare-env
+RUN apk update && apk add bash
 RUN corepack enable
 `;
 
