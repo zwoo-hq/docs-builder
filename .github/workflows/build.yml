@@ -7,16 +7,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v3
-        with:
-          version: 8
+      - name: Install package manager
+        run: corepack enable
       - name: Install dependencies
         run: pnpm i
       - name: Prepare build
         run: pnpm run prepare:build
       - name: Build docker image
-        run: "docker build . -f ./Dockerfile -t ${{ secrets.DOCKER_REPO_URL }}/zwoo/docs:latest"
-      - name: Log into JFrog
-        run: "docker login ${{ secrets.DOCKER_REPO_URL }} -p ${{ secrets.DOCKER_REPO_PASS }} -u ${{ secrets.DOCKER_REPO_USER }}"
+        run: "docker build . -f ./Dockerfile -t ${{ secrets.DOCKER_REPO_URL }}/zwoo-docs:latest"
+      - name: Login to gitea
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ secrets.DOCKER_REPO_URL}}
+          username: ${{ secrets.DOCKER_REPO_USER }}
+          password: ${{ secrets.DOCKER_REPO_PASS }}
       - name: Push image
-        run: "docker push ${{ secrets.DOCKER_REPO_URL }}/zwoo/docs:latest"
+        run: "docker push ${{ secrets.DOCKER_REPO_URL }}/zwoo-docs:latest"
