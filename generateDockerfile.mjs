@@ -22,7 +22,7 @@ COPY ./#DIR#/api ./api
 COPY ./#DIR#/docs ./docs
 COPY ./#DIR#/dev ./dev
 COPY ./#DIR#/scripts ./scripts
-COPY ./#DIR#/commonConfig.mts ./
+COPY ./#DIR#/common ./common
 COPY ./#DIR#/public ./public
 
 # build

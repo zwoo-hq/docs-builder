@@ -1,5 +1,6 @@
 
 FROM node:20-alpine AS prepare-env
+RUN apk update && apk add bash
 RUN corepack enable
 
 FROM prepare-env AS build-en
@@ -16,7 +17,8 @@ COPY ./docs/api ./api
 COPY ./docs/docs ./docs
 COPY ./docs/dev ./dev
 COPY ./docs/scripts ./scripts
-COPY ./docs/commonConfig.mts ./
+COPY ./docs/common ./common
+COPY ./docs/public ./public
 
 # build
 RUN pnpm build
@@ -35,7 +37,8 @@ COPY ./docs-de/api ./api
 COPY ./docs-de/docs ./docs
 COPY ./docs-de/dev ./dev
 COPY ./docs-de/scripts ./scripts
-COPY ./docs-de/commonConfig.mts ./
+COPY ./docs-de/common ./common
+COPY ./docs-de/public ./public
 
 # build
 RUN pnpm build
